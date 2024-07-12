@@ -1,0 +1,10 @@
+###
+
+POST localhost:8080/v1/user/reg
+Content-Type: application/json
+
+{
+  "userName": "JohnDoe",
+  "password": "4154565",
+  "nickName": "65456454"
+}
