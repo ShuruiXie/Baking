@@ -191,7 +191,7 @@
             return {
                 c: {
                     title: "", type: "1", categoryId: "", imgUrl: "",
-                    content: "", videoUrl: ""
+                    content: "", videoUrl: "",createBy: ""
                 },
                 dialogImageUrl: '',
                 dialogVisible: false,
@@ -214,8 +214,10 @@
                     return;
                 }
                 let user = localStorage.user ? JSON.parse(localStorage.user) : null;
-                if (user != null) {
+                if (user.id != null) {
+                    console.log(user.id)
                     v.c.createBy = user.id;//设置作者id
+
                 }
                 //设置摘要
                 v.c.brief = editor.getText().slice(0,50);
@@ -223,7 +225,6 @@
                 axios.post("/v1/contents/add-new",v.c).then(function (response) {
                     if (response.data.code==1){
                         location.href="articleManagement.html?type="+v.c.type;
-
                     }
                 })
 

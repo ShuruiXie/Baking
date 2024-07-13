@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 public class UploadController {
 
-    private String filePath="D:/Desktop/file";
+    private String dirPath="D:/Desktop/file";
 
     @PostMapping("/upload")
     public JsonResult upload(MultipartFile file) throws IOException {
@@ -24,14 +24,24 @@ public class UploadController {
         //截取名称后缀留下
         String suffix = fileName.substring(fileName.lastIndexOf("."));
         //生成新的文件名
-        String newFileName = UUID.randomUUID() + suffix;
+        fileName = UUID.randomUUID() + suffix;
         //保存文件
-        File dirFile = new File(filePath);
+        File dirFile = new File(dirPath);
         if (!dirFile.exists()) {
             dirFile.mkdirs();
         }
-        file.transferTo(new File(dirFile + fileName));
+        file.transferTo(new File(dirPath +"/"+ fileName));
 
-        return  JsonResult.ok();
+        return  JsonResult.ok("/"+fileName);
     }
+
+    @PostMapping("/remove")
+    public JsonResult remove(String url){
+        File file=new File(dirPath+"/"+url);
+        System.out.println(dirPath+"/"+url);
+        System.out.println(url);
+        file.delete();
+        return JsonResult.ok();
+    }
+
 }

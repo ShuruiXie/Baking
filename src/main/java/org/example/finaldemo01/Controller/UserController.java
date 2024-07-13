@@ -2,19 +2,19 @@ package org.example.finaldemo01.Controller;
 
 
 import org.example.finaldemo01.mapper.UserMapper;
-import org.example.finaldemo01.pojo.dyo.UserLoginDTO;
-import org.example.finaldemo01.pojo.dyo.UserRegDTO;
-import org.example.finaldemo01.pojo.dyo.UserUpdateDTO;
+import org.example.finaldemo01.pojo.dto.UserLoginDTO;
+import org.example.finaldemo01.pojo.dto.UserRegDTO;
+import org.example.finaldemo01.pojo.dto.UserUpdateDTO;
 import org.example.finaldemo01.pojo.entity.User;
 import org.example.finaldemo01.pojo.vo.UserVO;
 import org.example.finaldemo01.response.JsonResult;
 import org.example.finaldemo01.response.StatusCode;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.Date;
 
 @RestController
@@ -48,8 +48,6 @@ public class UserController {
     public JsonResult login(@RequestBody UserLoginDTO userLoginDTO, HttpSession session){
         UserVO userVO = userMapper.selectUserByUserName(userLoginDTO.getUserName());
         // 根据用户名查询用户是否存在
-        System.out.println(userLoginDTO.getUserName());
-        System.out.println((userMapper.selectUserByUserName(userLoginDTO.getUserName())).getPassword());
         if(userVO == null){
             return new JsonResult(StatusCode.USERNAME_ERROR);
         }
@@ -75,6 +73,17 @@ public class UserController {
     public JsonResult update(@RequestBody UserUpdateDTO userUpdateDTO)
     {
 
+        if(userUpdateDTO.getImgUrl() != null){
+            //得到图片的路径
+            String imgUrl = userMapper.selectImgUrlById(userUpdateDTO.getId());
+            //删除原来的图片
+            new File(imgUrl).delete();
+        }
+        User user = new User();
+        BeanUtils.copyProperties(userUpdateDTO, user);
+        userMapper.updateUserById(user);
         return JsonResult.ok();
     }
+
+
 }

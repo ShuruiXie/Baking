@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.finaldemo01.mapper.ContentMapper">
+    <!--新增个人稿件-->
     <insert id="insertContent">
         <!--
         view_count, comment_count 是浏览量和评论量,新增的稿件一定是0
@@ -44,6 +45,7 @@
                content,
                type,
                create_by,
+               brief,
                category_id
         FROM t_content
         WHERE id = #{id}

@@ -175,4 +175,24 @@ public class Content {
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", videoUrl='" + videoUrl + '\'' +
+                ", content='" + content + '\'' +
+                ", type=" + type +
+                ", viewCount=" + viewCount +
+                ", commentCount=" + commentCount +
+                ", createBy=" + createBy +
+                ", createTime=" + createTime +
+                ", updateBy=" + updateBy +
+                ", updateTime=" + updateTime +
+                ", brief='" + brief + '\'' +
+                ", categoryId=" + categoryId +
+                '}';
+    }
 }

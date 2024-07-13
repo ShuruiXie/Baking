@@ -5,7 +5,19 @@ spring:
     password: avengers123
   web:
     resources:
-      static-locations: classpath:static
+      static-locations: classpath:static,file:D:/Desktop/file/
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+server:
+  servlet:
+    session:
+      timeout: 120m
+
+
+
+
 
 mybatis:
   configuration:

@@ -1,4 +1,4 @@
-package org.example.finaldemo01.pojo.dyo;
+package org.example.finaldemo01.pojo.dto;
 
 public class UserRegDTO {
 
