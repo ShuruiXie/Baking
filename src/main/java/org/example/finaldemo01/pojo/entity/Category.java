@@ -1,15 +1,12 @@
-package org.example.finaldemo01.pojo.vo;
+package org.example.finaldemo01.pojo.entity;
 
+public class Category {
 
-public class CategoryVO {
-    /**
-     * 分类编号
-     */
     private Integer id;
-    /**
-     * 分类名
-     */
+
     private String name;
+
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -25,5 +22,13 @@ public class CategoryVO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }
