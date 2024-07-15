@@ -44,7 +44,7 @@ public class ContentManagementVO {
      *  category_id 关联t_category表的二级分类id
      *  通过关联的id获取对应的 分类二级标签 传入categoryName
      */
-    private String categoryName;
+    private String categoryId;
 
     public Long getId() {
         return id;
@@ -111,10 +111,10 @@ public class ContentManagementVO {
     }
 
     public String getCategoryName() {
-        return categoryName;
+        return categoryId;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategoryName(String categoryId) {
+        this.categoryId = categoryId;
     }
 }
